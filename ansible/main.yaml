@@ -30,7 +30,7 @@
       dest: /
 
   - command: ls -la
-  - commamd: mkdir front
+  - command: mkdir front
 
   - name: Extract foo.tgz into /var/lib/foo
     unarchive:
