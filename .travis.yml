@@ -53,4 +53,7 @@ jobs:
       script:
         - cd /$TRAVIS_BUILD_DIR/ansible
         - ansible-playbook main.yaml 
-
+        - ls -la
+        - cd front/
+        - ls -la
+        

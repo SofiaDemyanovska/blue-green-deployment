@@ -31,21 +31,3 @@
 
   - shell: cd /front && ls -la
 
-  - name: Extract foo.tgz into /var/lib/foo
-    unarchive:
-      src: /front/frontend-zip/frontend.zip
-      dest: /front
-      remote_src: yes
-
-  - name: Install packages based on package.json.
-    command: chdir=/home/ec2-user/front sudo npm i
-
-  - name: Build static files
-    command: chdir=/home/ec2-user/front npm run-script build
-
-  - name: basic upload
-    s3_sync:
-      bucket: s3-puppet-theatre
-      file_root: /home/ec2-user/front/build
-      region: us-east-2
-      permission: public-read
