@@ -25,12 +25,18 @@
       name: npm   
       state: latest
 
-  - command: npm --version
+  - git:
+      repo: https://github.com/SofiaDemyanovska/frontend-zip.git
+      dest: /
+
+  - command: ls -la
+  - commamd: mkdir front
 
   - name: Extract foo.tgz into /var/lib/foo
     unarchive:
-      src: /home/sofia/devops-course/dotnet/front-dubbing-project-master/back.zip
-      dest: /home/ec2-user/front
+      src: /frontend-zip/frontend.zip
+      dest: /front
+      remote_src: yes
 
   - name: Install packages based on package.json.
     command: chdir=/home/ec2-user/front sudo npm i
