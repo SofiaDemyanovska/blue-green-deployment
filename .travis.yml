@@ -36,6 +36,9 @@ jobs:
       # Only run terraform apply stage if outside of a pull request
       if: type IN (push) and branch = master
       script:
+        - export AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+        - export AWS_SECRET_ACCESS_KEY="AWS_SECRET_ACCESS_KEY"
+        - export AWS_DEFAULT_REGION="us-east-2"
         - cd /$TRAVIS_BUILD_DIR/terraform
         - echo "Executing Terraform Apply on merged code"
         - terraform init $tf_init_cli_options
