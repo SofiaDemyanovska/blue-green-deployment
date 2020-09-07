@@ -47,6 +47,7 @@ jobs:
         - cd /$TRAVIS_BUILD_DIR/terraform
         - echo "Executing Terraform Apply on merged code"
         - terraform init $tf_init_cli_options
+        - terraform destroy $tf_apply_cli_options
         - terraform apply $tf_apply_cli_options
     - stage: ansible playbook
       script:
