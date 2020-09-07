@@ -10,10 +10,10 @@
       - boto3
       - botocore
 
-  - name: Upgrade all packages to the latest version
-    apt:
-      name: "*"
-      state: latest
+#  - name: Upgrade all packages to the latest version
+#    apt:
+#      name: "*"
+#      state: latest
 
   - name: install the latest version of Apache
     apt:
@@ -27,14 +27,13 @@
 
   - git:
       repo: https://github.com/SofiaDemyanovska/frontend-zip.git
-      dest: /
+      dest: /front
 
-  - command: ls -la
-  - command: mkdir front
+  - shell: cd /front && ls -la
 
   - name: Extract foo.tgz into /var/lib/foo
     unarchive:
-      src: /frontend-zip/frontend.zip
+      src: /front/frontend-zip/frontend.zip
       dest: /front
       remote_src: yes
 
