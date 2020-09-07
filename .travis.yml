@@ -20,6 +20,10 @@ before_install:
   - sudo mv terraform /usr/local/bin/
   - rm terraform_"$tf_version"_linux_amd64.zip
   - ssh-keygen -t rsa -f ~/.ssh/server -N 'server'
+  - sudo apt-add-repository ppa:ansible/ansible
+  - sudo apt-get update
+  - sudo apt-get install ansible
+
 # Terraform Plan and Apply
 # Plan only on pull requests, Apply on merged code
 jobs:
@@ -43,3 +47,8 @@ jobs:
         - echo "Executing Terraform Apply on merged code"
         - terraform init $tf_init_cli_options
         - terraform apply $tf_apply_cli_options
+    - stage: ansible playbook
+      script:
+        - cd /$TRAVIS_BUILD_DIR/ansible
+        - ansible-playbook main.yml 
+
