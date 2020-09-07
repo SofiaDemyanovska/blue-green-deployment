@@ -10,24 +10,20 @@
       - boto3
       - botocore
 
-  - name: install the latest version of Apache
-    yum:
-      name: gcc-c++
+  - name: Upgrade all packages to the latest version
+    apt:
+      name: "*"
       state: latest
 
   - name: install the latest version of Apache
-    yum:
-      name: make     
+    apt:
+      name: nodejs
       state: latest
-
-  - name:
-    shell: curl -sL https://rpm.nodesource.com/setup_14.x | sudo -E bash -
 
   - name: install the latest version of Apache
-    yum:
-      name: nodejs     
+    apt:
+      name: npm   
       state: latest
-
 
   - name: Extract foo.tgz into /var/lib/foo
     unarchive:
