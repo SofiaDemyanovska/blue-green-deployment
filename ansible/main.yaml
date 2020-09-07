@@ -1,0 +1,50 @@
+---
+- hosts: webserver
+  become: true
+
+  tasks:
+  - name: Ensure boto and boto3 modules are installed
+    pip:
+      name: "{{ item }}"
+    with_items:
+      - boto3
+      - botocore
+
+  - name: install the latest version of Apache
+    yum:
+      name: gcc-c++
+      state: latest
+
+  - name: install the latest version of Apache
+    yum:
+      name: make     
+      state: latest
+
+  - name:
+    shell: curl -sL https://rpm.nodesource.com/setup_14.x | sudo -E bash -
+
+  - name: install the latest version of Apache
+    yum:
+      name: nodejs     
+      state: latest
+
+
+  - name: Extract foo.tgz into /var/lib/foo
+    unarchive:
+      src: /home/sofia/devops-course/dotnet/front-dubbing-project-master/back.zip
+      dest: /home/ec2-user/front
+
+  - name: Install packages based on package.json.
+    command: chdir=/home/ec2-user/front sudo npm i
+
+  - name: Build static files
+    command: chdir=/home/ec2-user/front npm run-script build
+
+  - name: basic upload
+    s3_sync:
+      aws_access_key: *****
+      aws_secret_key: *****
+      bucket: s3-puppet-theatre
+      file_root: /home/ec2-user/front/build
+      region: us-east-2
+      permission: public-read
