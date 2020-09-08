@@ -1,3 +1,5 @@
+#---------------------------------------------------------------
+# Create a S3 bucket to store frontend static files 
 resource "aws_s3_bucket" "front" {
   bucket = "s3-puppet-theatre"
   acl    = "public-read"
@@ -18,7 +20,8 @@ resource "aws_s3_bucket" "front" {
 EOF
   }
 }
-
+#---------------------------------------------------------------
+# Create S3 Bucket Policy to grant public read access for website
 resource "aws_s3_bucket_policy" "front" {
   bucket = aws_s3_bucket.front.id
 
@@ -37,3 +40,5 @@ resource "aws_s3_bucket_policy" "front" {
 }
 POLICY
 }
+
+#---------------------------------------------------------------
