@@ -39,7 +39,7 @@ jobs:
         - terraform plan $tf_plan_cli_options
     - stage: terraform apply
       # Only run terraform apply stage if outside of a pull request
-      if: type IN (push) and branch = master
+      if: type IN (push) and branch = mas
       script:
         - export AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
         - export AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
