@@ -5,6 +5,7 @@
   vars:
     AWS_ACCESS_KEY: "{{ aws_access_key }}"
     AWS_SECRET_KEY: "{{ aws_secret_key }}"
+#    lb_url: "{{ lb_url }}"
 
   tasks:
   - name: Ensure boto and boto3 modules are installed
@@ -35,13 +36,13 @@
     replace:
       path: ~/front/src/config.ts
       regexp: 'site_url'
-      replace: "http://puppetproject-elb-1571383994.us-east-2.elb.amazonaws.com/"
+      replace: "{{ lb_url }}"
 
   - name: Ansible replace string example
     replace:
       path: ~/front/config/webpack.config.js
       regexp: 'site_url'
-      replace: "http://puppetproject-elb-1571383994.us-east-2.elb.amazonaws.com/"
+      replace: "{{ lb_url }}"
 
   - name: Install packages based on package.json.
     command: chdir=~/front sudo npm i
