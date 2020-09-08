@@ -15,14 +15,11 @@
 #      name: "*"
 #      state: latest
 
-  - name: install the latest version of Apache
-    apt:
-      name: nodejs
-      state: latest
+  - shell: curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 
   - name: install the latest version of Apache
     apt:
-      name: npm   
+      name: nodejs
       state: latest
 
   - git:
