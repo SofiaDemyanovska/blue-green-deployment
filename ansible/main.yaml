@@ -41,11 +41,11 @@
       regexp: 'site_url'
       replace: "PuppetProject-ELB-2002224456.us-east-2.elb.amazonaws.com/"
 
-  - name: Ansible replace string example
-    replace:
-      path: ~/front/config/webpack.config.js
-      regexp: 'site_url'
-      replace: "PuppetProject-ELB-2002224456.us-east-2.elb.amazonaws.com/"
+#  - name: Ansible replace string example
+#    replace:
+#      path: ~/front/config/webpack.config.js
+#      regexp: 'site_url'
+#      replace: "PuppetProject-ELB-2002224456.us-east-2.elb.amazonaws.com/"
 
   - name: Install packages based on package.json.
     command: chdir=~/front sudo npm i
