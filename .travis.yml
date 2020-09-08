@@ -20,6 +20,7 @@ before_install:
   - sudo mv terraform /usr/local/bin/
   - rm terraform_"$tf_version"_linux_amd64.zip
   - ssh-keygen -t rsa -f ~/.ssh/server -N 'server'
+# Install Ansible
   - sudo apt update
   - sudo apt install software-properties-common
   - sudo apt-add-repository --yes --update ppa:ansible/ansible
