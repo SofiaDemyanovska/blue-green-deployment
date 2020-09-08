@@ -44,5 +44,5 @@ jobs:
 #    - stage: ansible playbook
 #      script:
         - cd /$TRAVIS_BUILD_DIR/ansible
-        - ansible-playbook main.yaml --extra-vars "aws_access_key=$AWS_ACCESS_KEY_ID aws_secret_key=$AWS_SECRET_ACCESS_KEY"
+        - ansible-playbook main.yaml --extra-vars "aws_access_key=$AWS_ACCESS_KEY_ID aws_secret_key=$AWS_SECRET_ACCESS_KEY lb_url=PuppetProject-ELB-2002224456.us-east-2.elb.amazonaws.com"
         
