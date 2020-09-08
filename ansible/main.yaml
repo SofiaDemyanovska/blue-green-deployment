@@ -48,8 +48,8 @@
 
   - name: basic upload
     s3_sync:
-      aws_access_key: "{{ AWS_ACCESS_KEY }}"
-      aws_secret_key: "{{ AWS_SECRET_KEY }}"
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
       bucket: s3-puppet-theatre
       file_root: ~/front/build
       region: us-east-2
