@@ -49,8 +49,10 @@ jobs:
         - terraform init $tf_init_cli_options
         - terraform destroy $tf_apply_cli_options
         - terraform apply $tf_apply_cli_options
+        - export LB_IP=$(terraform output loadbalancer_ip)
     - stage: ansible playbook
       script:
         - cd /$TRAVIS_BUILD_DIR/ansible
+        - echo $LB_IP
         - ansible-playbook main.yaml --extra-vars "aws_access_key=$AWS_ACCESS_KEY_ID aws_secret_key=$AWS_SECRET_ACCESS_KEY"
         

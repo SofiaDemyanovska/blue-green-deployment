@@ -86,6 +86,3 @@ resource "aws_elb" "puppet_theatre_back" {
   }
 }
 
-output "web_loadbalancer_url" {
-  value = aws_elb.puppet_theatre_back.dns_name
-}
