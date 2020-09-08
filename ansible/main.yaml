@@ -14,11 +14,6 @@
       - boto3
       - botocore
 
-#  - name: Upgrade all packages to the latest version
-#    apt:
-#      name: "*"
-#      state: latest
-
   - shell: curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
 
   - name: install the latest version of Apache
@@ -35,6 +30,8 @@
       src: ~/front/frontend.zip
       dest: ~/front
       remote_src: yes
+
+  - shell: sed -i 's/site_url/"http://puppetproject-elb-1571383994.us-east-2.elb.amazonaws.com/"/' ~/front/src/config.ts
 
   - name: Install packages based on package.json.
     command: chdir=~/front sudo npm i
