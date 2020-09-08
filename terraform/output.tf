@@ -3,5 +3,5 @@ output "loadbalancer_url" {
 }
 
 output "s3_url" {
-  value = aws_s3_bucket.puppet_theatre_back.bucket_regional_domain_name 
+  value = aws_s3_bucket.front.bucket_regional_domain_name 
 }
