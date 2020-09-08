@@ -48,7 +48,7 @@ jobs:
         - echo "Executing Terraform Apply on merged code"
         - terraform init $tf_init_cli_options
         - terraform apply $tf_apply_cli_options
-        - export LB_IP=$(terraform output loadbalancer_ip)
+        - LB_IP=$(terraform output loadbalancer_ip)
 #    - stage: ansible playbook
 #      script:
         - cd /$TRAVIS_BUILD_DIR/ansible
