@@ -1,0 +1,10 @@
+---
+- name: Upload file to s3 bucket
+  s3_sync:
+    aws_access_key: "{{ aws_access_key }}"
+    aws_secret_key: "{{ aws_secret_key }}"
+    bucket: s3-puppet-theatre
+    file_root: ~/front/build
+    region: us-east-2
+    permission: public-read
+

@@ -2,55 +2,7 @@
 - hosts: localhost
   become: true
 
-  tasks:
-  - name: Ensure boto and boto3 modules are installed
-    pip:
-      name: "{{ item }}"
-    with_items:
-      - boto3
-      - botocore
-
-  - shell: curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
-
-  - name: install the latest version of Apache
-    apt:
-      name: nodejs
-      state: latest
-
-  - git:
-      repo: https://github.com/SofiaDemyanovska/frontend-zip.git
-      dest: ~/front
-
-  - name: Extract foo.tgz into /var/lib/foo
-    unarchive:
-      src: ~/front/frontend.zip
-      dest: ~/front
-      remote_src: yes
-
-
-  - name: Ansible replace string example
-    replace:
-      path: ~/front/src/config.ts
-      regexp: 'site_url'
-      replace: "http://{{ lb_url }}/"
-
-  - name: Ansible replace string example
-    replace:
-      path: ~/front/config/webpack.config.js
-      regexp: 'site_url'
-      replace: "http://{{ lb_url }}/"
-
-  - name: Install packages based on package.json.
-    command: chdir=~/front sudo npm i
-
-  - name: Build static files
-    command: chdir=~/front npm run-script build
-
-  - name: basic upload
-    s3_sync:
-      aws_access_key: "{{ aws_access_key }}"
-      aws_secret_key: "{{ aws_secret_key }}"
-      bucket: s3-puppet-theatre
-      file_root: ~/front/build
-      region: us-east-2
-      permission: public-read
+  roles:
+    - nodejs
+    - build
+    - s3
