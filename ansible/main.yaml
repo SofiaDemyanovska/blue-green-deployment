@@ -32,7 +32,8 @@
       dest: ~/front
       remote_src: yes
 
-  - command: echo "{{ lb_url }}"
+  - debug:
+      var: lb_url
 
   - name: Ansible replace string example
     replace:
