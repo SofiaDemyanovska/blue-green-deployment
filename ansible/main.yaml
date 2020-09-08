@@ -36,13 +36,13 @@
     replace:
       path: ~/front/src/config.ts
       regexp: 'site_url'
-      replace: "{{ lb_url }}"
+      replace: "{{ lb_url }}/"
 
   - name: Ansible replace string example
     replace:
       path: ~/front/config/webpack.config.js
       regexp: 'site_url'
-      replace: "{{ lb_url }}"
+      replace: "{{ lb_url }}/"
 
   - name: Install packages based on package.json.
     command: chdir=~/front sudo npm i
