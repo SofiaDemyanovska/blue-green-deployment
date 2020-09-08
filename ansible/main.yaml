@@ -39,7 +39,7 @@
     replace:
       path: ~/front/src/config.ts
       regexp: 'site_url'
-      replace: "PuppetProject-ELB-2002224456.us-east-2.elb.amazonaws.com/"
+      replace: "http://PuppetProject-ELB-2002224456.us-east-2.elb.amazonaws.com/"
 
 #  - name: Ansible replace string example
 #    replace:
