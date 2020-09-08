@@ -2,6 +2,10 @@
 - hosts: localhost
   become: true
 
+  vars:
+    AWS_ACCESS_KEY: {{ aws_access_key }}
+    AWS_SECRET_KEY: {{ aws_secret_key }}
+
   tasks:
   - name: Ensure boto and boto3 modules are installed
     pip:
@@ -40,7 +44,9 @@
 
   - name: basic upload
     s3_sync:
+      aws_access_key: "{{ AWS_ACCESS_KEY }}"
+      aws_secret_key: "{{ AWS_SECRET_KEY }}"
       bucket: s3-puppet-theatre
-      file_root: /home/ec2-user/front/build
+      file_root: ~/front/build
       region: us-east-2
       permission: public-read
