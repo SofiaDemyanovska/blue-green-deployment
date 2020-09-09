@@ -42,7 +42,7 @@ resource "aws_autoscaling_group" "puppet_theatre_back" {
   name                 = "ASG-${aws_launch_configuration.puppet_theatre_back.name}"
   launch_configuration = aws_launch_configuration.puppet_theatre_back.name
   min_size             = var.min_size
-  max_size             = var.maz.size
+  max_size             = var.max_size
   min_elb_capacity     = var.min_elb_capacity
   health_check_type    = "ELB"
   vpc_zone_identifier  = ["${aws_subnet.default.id}"]
