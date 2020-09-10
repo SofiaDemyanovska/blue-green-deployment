@@ -2,8 +2,6 @@
 dist: xenial # Ubuntu 16.04
 language: bash
 
-# Export variables
-  - tf_version=0.13.2 AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" tf_init_cli_options="-input=false" tf_apply_cli_options="-auto-approve -input=false"
 
 # Only build pushes to master branch
 branches:
