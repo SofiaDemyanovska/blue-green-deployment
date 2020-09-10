@@ -3,13 +3,7 @@ dist: xenial # Ubuntu 16.04
 language: bash
 
 # Export variable
-env:
-  - tf_version=0.13.2 
-  - AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" 
-  - tf_init_cli_options="-input=false" 
-  - tf_apply_cli_options="-auto-approve -input=false"
-  - AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
-  - AWS_DEFAULT_REGION="us-east-2"
+  - tf_version=0.13.2 AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID" tf_init_cli_options="-input=false" tf_apply_cli_options="-auto-approve -input=false"
 
 # Only build pushes to master branch
 branches:
@@ -41,6 +35,9 @@ jobs:
       # Only run terraform apply stage when changes are commited to master branch
       if: type IN (push) and branch = master
       script:
+      # Export AWS credentials from Travis enviroment variables
+        - export AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+        - export AWS_DEFAULT_REGION="us-east-2"
       # Run terraform apply and add new variables with loadbalancer url
         - cd /$TRAVIS_BUILD_DIR/terraform
         - echo "Executing Terraform Apply on merged code"
